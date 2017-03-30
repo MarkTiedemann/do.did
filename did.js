@@ -9,7 +9,7 @@ const logAndExit = () => {
   process.exit(0)
 }
 
-const updateTodo = index => {
+const deleteTodo = index => {
   todos.splice(index, 1)
   config.set('todos', todos)
 }
@@ -24,7 +24,7 @@ const delIndex = todos.indexOf(delTodo)
 
 // exact hit
 if (delIndex !== -1) {
-  updateTodo(delIndex)
+  deleteTodo(delIndex)
   logAndExit()
 }
 
@@ -46,6 +46,6 @@ inquirer.prompt([{
 }])
 .then(({ hit }) => {
   // indirect hit
-  updateTodo(todos.indexOf(hit))
+  deleteTodo(todos.indexOf(hit))
   logAndExit()
 })
