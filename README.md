@@ -11,17 +11,25 @@ npm install do.did --global
 ## Quickstart
 
 ```
+$ do
+
 $ do this
-this
++ this [green]
 
 $ do that
-this
-that
+- this
++ that [green]
+
+$ do
+- this
+- that
 
 $ did that
-this
+- this
+- that [red]
 
 $ did this
+- this [red]
 
 ```
 
