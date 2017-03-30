@@ -4,13 +4,48 @@ const config = new (require('conf'))()
 const args = process.argv.slice(2)
 const todos = config.get('todos') || []
 
-if (args.length > 0) {
-  const delTodo = args.join(' ')
-  const delIndex = todos.indexOf(delTodo)
-  if (delIndex !== -1) {
-    todos.splice(delIndex, 1)
-    config.set('todos', todos)
-  }
+const logAndExit = () => {
+  todos.forEach(todo => console.log(todo))
+  process.exit(0)
 }
 
-todos.forEach(todo => console.log(todo))
+const updateTodo = index => {
+  todos.splice(index, 1)
+  config.set('todos', todos)
+}
+
+// no args passed
+if (args.length === 0) {
+  logAndExit()
+}
+
+const delTodo = args.join(' ')
+const delIndex = todos.indexOf(delTodo)
+
+// exact hit
+if (delIndex !== -1) {
+  updateTodo(delIndex)
+  logAndExit()
+}
+
+const indirectHits = todos
+  .filter(item => item.indexOf(delTodo) > -1)
+
+// no indirect hits
+if (indirectHits.length === 0) {
+  logAndExit()
+}
+
+const inquirer = require('inquirer')
+
+inquirer.prompt([{
+  type: 'list',
+  name: 'hit',
+  message: 'Did you mean?',
+  choices: indirectHits
+}])
+.then(({ hit }) => {
+  // indirect hit
+  updateTodo(todos.indexOf(hit))
+  logAndExit()
+})

@@ -1,6 +1,6 @@
 {
   "name": "do.did",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "bin": {
     "do": "do.js",
     "did": "did.js"
@@ -19,7 +19,8 @@
   "author": "Mark Tiedemann <www.marktiedemann@gmail.com>",
   "license": "WTFPL",
   "dependencies": {
-    "conf": "^0.12.0"
+    "conf": "^0.12.0",
+    "inquirer": "^3.0.6"
   },
   "devDependencies": {
     "standard": "^9.0.2"
