@@ -5,13 +5,20 @@ const args = process.argv.slice(2)
 const todos = config.get('todos') || []
 
 const logAndExit = () => {
-  todos.forEach(todo => console.log(todo))
+  todos.forEach(todo => console.log('- ' + todo))
   process.exit(0)
 }
 
-const deleteTodo = index => {
+const deleteAndExit = index => {
+  const chalk = require('chalk')
+  todos.forEach((todo, i) =>
+    i === index
+      ? console.log(chalk.red('- ' + todo))
+      : console.log('- ' + todo)
+  )
   todos.splice(index, 1)
   config.set('todos', todos)
+  process.exit(0)
 }
 
 // no args passed
@@ -24,8 +31,7 @@ const delIndex = todos.indexOf(delTodo)
 
 // exact hit
 if (delIndex !== -1) {
-  deleteTodo(delIndex)
-  logAndExit()
+  deleteAndExit(delIndex)
 }
 
 const indirectHits = todos
@@ -46,6 +52,5 @@ inquirer.prompt([{
 }])
 .then(({ hit }) => {
   // indirect hit
-  deleteTodo(todos.indexOf(hit))
-  logAndExit()
+  deleteAndExit(todos.indexOf(hit))
 })
