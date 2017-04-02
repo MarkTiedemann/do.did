@@ -33,6 +33,10 @@ $ did this
 
 ```
 
+## Todos
+
+- Add auto-completion for `did` command
+
 ## License
 
 [WTFPL](http://www.wtfpl.net/) – Do What the F*ck You Want to Public License.
