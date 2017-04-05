@@ -5,7 +5,7 @@ const args = process.argv.slice(2)
 const todos = config.get('todos') || []
 
 const logAndExit = () => {
-  todos.forEach(todo => console.log('- ' + todo))
+  todos.forEach(todo => console.log('• ' + todo))
   process.exit(0)
 }
 
@@ -14,7 +14,7 @@ const deleteAndExit = index => {
   todos.forEach((todo, i) =>
     i === index
       ? console.log(chalk.red('- ' + todo))
-      : console.log('- ' + todo)
+      : console.log('• ' + todo)
   )
   todos.splice(index, 1)
   config.set('todos', todos)

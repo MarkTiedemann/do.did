@@ -10,32 +10,32 @@ npm install do.did --global
 
 ## Quickstart
 
-```
+```diff
 $ do
 
 $ do this
-+ this [green]
++ this
 
 $ do that
-- this
-+ that [green]
+• this
++ that
 
 $ do
-- this
-- that
+• this
+• that
 
 $ did that
-- this
-- that [red]
+• this
+- that
 
 $ did this
-- this [red]
+- this
 
 ```
 
 ## Todos
 
-- Add auto-completion for `did` command
+- Add auto-completion for `did` command (see: https://github.com/mokkabonna/inquirer-autocomplete-prompt)
 
 ## License
 
